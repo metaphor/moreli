@@ -14,6 +14,9 @@ apply plugin: 'java'
 apply plugin: 'idea'
 apply plugin: 'org.springframework.boot'
 
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
 repositories {
     jcenter()
     maven { url 'http://repo.spring.io/snapshot' }
@@ -21,10 +24,16 @@ repositories {
 }
 
 dependencies {
-    compile("org.springframework.boot:spring-boot-starter-web")
+    compile("org.springframework.boot.experimental:spring-boot-starter-web-reactive")
     testCompile("org.springframework.boot:spring-boot-starter-test")
 }
 
+dependencyManagement {
+    imports {
+        mavenBom "org.springframework.boot.experimental:spring-boot-dependencies-web-reactive:0.1.0.BUILD-SNAPSHOT"
+    }
+}
+
 task wrapper(type: Wrapper) {
-    gradleVersion = '2.14.1' // Gradle 3 is not supported by Spring Boot
+    gradleVersion = '3.4' // Gradle 3 is not supported by Spring Boot
 }
