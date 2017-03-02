@@ -12,9 +12,9 @@ public class AuthorRepository {
     Mono<String> someone() {
         return Mono.fromCallable(() -> {
             try {
-                int timeout = 5;
+                int timeout = 7;
                 TimeUnit.SECONDS.sleep(timeout);
-                return "author " + timeout;
+                return "authdsdsdsr " + timeout;
             } catch (InterruptedException e) {
                 throw Exceptions.propagate(e);
             }

@@ -1,39 +1,36 @@
-
 buildscript {
     repositories {
         jcenter()
         maven { url 'http://repo.spring.io/snapshot' }
         maven { url 'http://repo.spring.io/milestone' }
     }
+
     dependencies {
         classpath "org.springframework.boot:spring-boot-gradle-plugin:$springBootVersion"
     }
 }
 
-apply plugin: 'java'
-apply plugin: 'idea'
-apply plugin: 'org.springframework.boot'
+configure(subprojects.findAll {it.name.startsWith('resource')}) {
 
-sourceCompatibility = 1.8
-targetCompatibility = 1.8
+    apply plugin: 'java'
+    apply plugin: 'idea'
+    apply plugin: 'org.springframework.boot'
 
-repositories {
-    jcenter()
-    maven { url 'http://repo.spring.io/snapshot' }
-    maven { url 'http://repo.spring.io/milestone' }
-}
+    sourceCompatibility = 1.8
+    targetCompatibility = 1.8
 
-dependencies {
-    compile("org.springframework.boot.experimental:spring-boot-starter-web-reactive")
-    testCompile("org.springframework.boot:spring-boot-starter-test")
-}
+    repositories {
+        jcenter()
+        maven { url 'http://repo.spring.io/snapshot' }
+        maven { url 'http://repo.spring.io/milestone' }
+    }
 
-dependencyManagement {
-    imports {
-        mavenBom "org.springframework.boot.experimental:spring-boot-dependencies-web-reactive:0.1.0.BUILD-SNAPSHOT"
+    dependencies {
+        compile("org.springframework.boot:spring-boot-starter-webflux")
+        testCompile("org.springframework.boot:spring-boot-starter-test")
     }
 }
 
 task wrapper(type: Wrapper) {
-    gradleVersion = '3.4' // Gradle 3 is not supported by Spring Boot
+    gradleVersion = '3.4'
 }

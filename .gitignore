@@ -4,4 +4,4 @@
 *.iws
 /gradle/wrapper/distributions/
 /tomcat*
-/build
+build/
