@@ -1,6 +1,6 @@
 package com.moreli.interfaces.facade.dto;
 
-public class MessageDTO {
+public class QueryUserRepoRequest {
     private String content;
 
     public String getContent() {

@@ -1,8 +1,8 @@
 package com.moreli.intg;
 
 import com.moreli.MoreLiApplication;
-import com.moreli.interfaces.facade.dto.MessageDTO;
-import com.moreli.interfaces.facade.dto.ReversedMessageDTO;
+import com.moreli.interfaces.facade.dto.QueryUserRepoRequest;
+import com.moreli.interfaces.facade.dto.QueryUserReposResponse;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,20 +25,20 @@ public class MessageIntgTest {
     @Test
     public void should_reverse_message() throws Exception {
 
-        MessageDTO messageDTO = new MessageDTO();
-        messageDTO.setContent("abc");
+        QueryUserRepoRequest queryUserRepoRequest = new QueryUserRepoRequest();
+        queryUserRepoRequest.setContent("abc");
 
-        ReversedMessageDTO reversedMessageDTO = new ReversedMessageDTO();
-        reversedMessageDTO.setContent("cba");
+        QueryUserReposResponse queryUserReposResponse = new QueryUserReposResponse();
+        queryUserReposResponse.setContent("cba");
 
         webTestClient.post()
                 .uri("/messages")
                 .contentType(MediaType.APPLICATION_JSON_UTF8)
                 .accept(MediaType.APPLICATION_JSON_UTF8)
-                .body(just(messageDTO), MessageDTO.class)
+                .body(just(queryUserRepoRequest), QueryUserRepoRequest.class)
                 .exchange()
-                .expectBodyList(ReversedMessageDTO.class)
+                .expectBodyList(QueryUserReposResponse.class)
                 .hasSize(1)
-                .contains(reversedMessageDTO);
+                .contains(queryUserReposResponse);
     }
 }

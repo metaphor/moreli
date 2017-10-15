@@ -2,8 +2,15 @@ package com.moreli.interfaces.facade.dto;
 
 import java.util.Objects;
 
-public class ReversedMessageDTO {
+public class QueryUserReposResponse {
     private String content;
+
+    public QueryUserReposResponse(String firstHundred) {
+        this.content = firstHundred;
+    }
+
+    public QueryUserReposResponse() {
+    }
 
     public String getContent() {
         return content;
@@ -17,7 +24,7 @@ public class ReversedMessageDTO {
     public boolean equals(final Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        final ReversedMessageDTO that = (ReversedMessageDTO) o;
+        final QueryUserReposResponse that = (QueryUserReposResponse) o;
         return Objects.equals(content, that.content);
     }
 
